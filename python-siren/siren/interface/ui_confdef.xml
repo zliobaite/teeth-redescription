@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="../reremi/confdef.xsl"?>
+<root>
+  <info>Interface preferences for the Siren algorithm. A default preferences file can be obtained by copying this file and removing the &#60;default&#62; tags around default values.</info>
+  <section>
+    <name>Network</name>
+    <section>
+      <name>Work server</name>
+      <parameter>
+	<name>workserver_ip</name>
+	<label>Workserver IP</label>
+	<parameter_type>open</parameter_type>
+	<value_type>text</value_type>
+	<legend>IP adress of the server executing computational the tasks or local for local computations.</legend>
+	<length>15</length>
+	<default><value>local</value></default>
+      </parameter>
+      <parameter>
+	<name>workserver_port</name>
+	<label>Workserver Port</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Listening port of the server executing the computational tasks.</legend>
+	<length>6</length>
+	<default><value>55444</value></default>
+      </parameter>
+      <parameter>
+	<name>workserver_authkey</name>
+	<label>Workserver Key</label>
+	<parameter_type>open</parameter_type>
+	<value_type>text</value_type>
+	<legend>Authentification key on the server executing the computational tasks.</legend>
+	<length>10</length>
+	<default><value>ReReMi</value></default>
+      </parameter>
+    </section>
+  </section>
+  <section>
+    <name>Split</name>
+    <section>
+      <name>Automatic splits</name>
+      <parameter>
+	<name>nb_folds</name>
+	<label>Nb folds</label>
+	<parameter_type>range</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Number of parts the data should be split into.</legend>
+	<range_min>2</range_min>
+	<range_max>20</range_max>
+	<default><value>5</value></default>
+      </parameter>
+      <parameter>
+	<name>coo_dim</name>
+	<label>Strips direction</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Coordinate to cut the strips along.</legend>
+	<length>3</length>
+	<default><value>-1</value></default>
+      </parameter>
+      <parameter>
+	<name>grain</name>
+	<label>Granularity</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Granularity of the cut (lower means narrower strips).</legend>
+	<length>3</length>
+	<default><value>1</value></default>
+      </parameter>
+    </section>
+  </section>
+</root>

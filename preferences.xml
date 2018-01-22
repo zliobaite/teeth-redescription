@@ -1,0 +1,62 @@
+<root>
+  <parameter>
+  <name>data_rep</name>
+  <value>./prepared_data/</value>
+</parameter>
+<parameter>
+  <name>result_rep</name>
+  <value>./xps/</value>
+</parameter>
+<parameter>
+  <name>data_l</name>
+  <value>IUCN_all-splits_nbspc3+_agg_rounded3</value>
+</parameter>
+<parameter>
+  <name>data_r</name>
+  <value>IUCN_all_nbspc3+_bio</value>
+</parameter>
+<parameter>
+  <name>out_base</name>
+  <value>biotraits_IUCN_all_nbspc3+_i.01o.6_rounded3</value>
+</parameter>
+  <parameter>
+    <name>min_itm_out</name>
+    <value>0.6</value>
+  </parameter>
+  <parameter>
+    <name>min_itm_in</name>
+    <value>0.01</value>
+  </parameter>
+  <parameter>
+    <name>logfile</name>
+    <value>+</value>
+</parameter>
+  <parameter>
+    <name>verbosity</name>
+    <value>8</value>
+  </parameter>
+  <parameter>
+    <name>neg_query</name>
+    <value>Positive</value>
+  </parameter>
+  <parameter>
+    <name>max_var_s0</name>
+    <value>4</value>
+  </parameter>
+  <parameter>
+    <name>max_var_s1</name>
+    <value>2</value>
+  </parameter>
+  <parameter>
+    <name>max_red</name>
+    <value>-1</value>
+  </parameter>
+<parameter>
+  <name>ext_r</name>
+  <value>.csv</value>
+</parameter>
+<parameter>
+  <name>ext_l</name>
+  <value>.csv</value>
+</parameter>
+</root>

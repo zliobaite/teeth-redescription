@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: python-siren
+Version: 4.0.0v1
+Summary: Interactive Redescription Mining
+Home-page: http://siren.gforge.inria.fr/
+Author: Esther Galbrun and Pauli Miettinen
+Author-email: esther.galbrun@inria.fr
+License: Apache_2.0
+Description: This provides the ReReMi redescription mining algorithm and the Siren interface for interactive mining and visualization of redescriptions.
+Platform: UNIX

@@ -1,0 +1,19 @@
+Siren --- Interactive Redescription Mining
+
+Siren is an interactive tool for visual and interactive redescription mining.
+
+With a debian-based distribution run the following commands as root to install:
+dpkg -i the_latest_siren_deb_package.deb
+
+Afterward, you might need to run, to fix dependencies, i.e., install missing required packages 
+sudo apt-get -f install
+
+If everything went fine, you should find a Siren entry in your Applications menu (probably under Science).
+
+More information:
+See http://siren.gforge.inria.fr/
+
+License:
+Siren is licensed under Apache License v2.0. See attached file "LICENSE".
+
+(c) Esther Galbrun and Pauli Miettinen, 2012

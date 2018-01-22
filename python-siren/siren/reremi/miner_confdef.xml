@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="./confdef.xsl"?>
+<root>
+  <info>Mining preferences for the ReReMi algorithm. A default preferences file can be obtained by copying this file and removing the &#60;default&#62; tags around default values, or by calling the main mining routine: <em>mainReReMi.py --config</em>.</info>
+  <section>
+    <name>Basic</name>
+    <section>
+      <name>Mining Method</name>
+      <parameter>
+	<name>algo_family</name>
+	<label>Algo family</label>
+	<parameter_type>single_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Type of mining algorithm to use.</legend>
+	<default><value>0</value></default>
+	<options><value>greedy</value><value>trees</value></options>
+      </parameter>
+      <parameter>
+	<name>nb_processes</name>
+	<label>Nb processes</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>number of mining processes to use.</legend>
+	<default><value>1</value></default>
+	<length>2</length>
+      </parameter>
+    <parameter>
+	<name>pe_balance</name>
+	<label>Pairs-expand balance</label>
+	<parameter_type>range</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Balance between testing variable pairs and expanding them (0 means testing all pairs first).</legend>
+	<range_min>0</range_min>
+	<range_max>10</range_max>
+	<default><value>4</value></default>
+    </parameter>
+      <parameter>
+	<name>verbosity</name>
+	<label>Log verbosity</label>
+	<parameter_type>range</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Verbosity of the algorithms output.</legend>
+	<range_min>0</range_min>
+	<range_max>10</range_max>
+	<default><value>4</value></default>
+      </parameter>
+</section>
+</section>
+    <section>
+      <name>Filtering</name>
+    <section>
+      <name>Intermediate supports of queries</name>
+      <parameter>
+	<name>min_itm_c</name>
+	<label>Min contribution</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Minimum contribution of a literal i.e., number of supporting entities impacted. Values between 0 and 1 are interpreted as ratio of the total number of entities.</legend>
+	<length>5</length>
+	<default><value>3</value></default>
+      </parameter>
+      <parameter>
+	<name>min_itm_in</name>
+	<label>Min support</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Minimum number of supporting entities. Values between 0 and 1 are interpreted as ratio of the total number of entities.</legend>
+	<length>5</length>
+	<default><value>0.05</value></default>
+      </parameter>
+      <parameter>
+	<name>min_itm_out</name>
+	<label>Min uncovered</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Minimum number of uncovered entities. Values between 0 and 1 are interpreted as ratio of the total number of entities.</legend>
+	<length>5</length>
+	<default><value>0.05</value></default>
+      </parameter>
+    </section>
+    <section>
+      <name>Final filtering</name>
+      <parameter>
+	<name>min_fin_in</name>
+	<label>Min support</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Minimum number of supporting entities, applied as post processing. Values between 0 and 1 are interpreted as ratio of the total number of entities.</legend>
+	<length>5</length>
+	<default><value>-1</value></default>
+      </parameter>
+      <parameter>
+	<name>min_fin_out</name>
+	<label>Min uncovered</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Minimum number of uncovered entities, applied as post processing. Values between 0 and 1 are interpreted as ratio of the total number of entities.</legend>
+	<length>5</length>
+	<default><value>-1</value></default>
+      </parameter>
+      <parameter>
+	<name>min_fin_var</name>
+	<label>Min total number of variables</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Maximum number of variables per redescription, applied as post processing.</legend>
+	<length>2</length>
+	<default><value>2</value></default>
+      </parameter>
+      <parameter>
+	<name>min_fin_acc</name>
+	<label>Min accuracy</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Minimim accuracy, applied as post processing.</legend>
+	<length>5</length>
+	<default><value>0.01</value></default>
+      </parameter>
+      <parameter>
+	<name>max_fin_pval</name>
+	<label>Max p-value</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Maximum p-value, applied as post processing.</legend>
+	<length>5</length>
+	<default><value>0.01</value></default>
+      </parameter>
+    </section>
+    <section>
+      <name>Additional filtering</name>
+      <parameter>
+	<name>max_overlaparea</name>
+	<label>Max Area Overlap</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Maximum overlap of the area of two redescriptions to be considered redundant.</legend>
+	<length>5</length>
+	<default><value>0.5</value></default>
+      </parameter>
+    </section>
+</section>
+<section>
+    <name>Greedy</name>
+<section>
+      <name>Types of queries</name>
+      <parameter>
+	<name>max_var_s0</name>
+	<label>LHS max number of variables</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Maximum number of variables per LHS query.</legend>
+	<length>2</length>
+	<default><value>4</value></default>
+      </parameter>
+      <parameter>
+	<name>max_var_s1</name>
+	<label>RHS max number of variables</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Maximum number of variables per RHS query.</legend>
+	<length>2</length>
+	<default><value>4</value></default>
+      </parameter>
+      <parameter>
+	<name>neg_query_s0_1</name>
+	<label>LHS Literals Bool</label>
+	<parameter_type>multiple_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Types of literals allowed in the left-hand side queries for Boolean literals.</legend>
+	<default><value>0</value></default>
+	<options><value>Positive</value><value>Negative</value></options>
+      </parameter>
+      <parameter>
+	<name>neg_query_s0_2</name>
+	<label>LHS Literals Cat</label>
+	<parameter_type>multiple_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Types of literals allowed in the left-hand side queries for categorical literals.</legend>
+	<default><value>0</value></default>
+	<options><value>Positive</value><value>Negative</value></options>
+      </parameter>
+      <parameter>
+	<name>neg_query_s0_3</name>
+	<label>LHS Literals Num</label>
+	<parameter_type>multiple_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Types of literals allowed in the left-hand side queries for numerical literals.</legend>
+	<default><value>0</value></default>
+	<options><value>Positive</value><value>Negative</value></options>
+      </parameter>
+      <parameter>
+	<name>ops_query_s0</name>
+	<label>LHS Operators</label>
+	<parameter_type>multiple_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Type of operators allowed in the left-hand side queries.</legend>
+	<default><value>0</value><value>1</value></default>
+	<options><value>Conjunction</value><value>Disjunction</value></options>
+      </parameter>
+      <parameter>
+	<name>neg_query_s1_1</name>
+	<label>RHS Literals Bool</label>
+	<parameter_type>multiple_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Types of literals allowed in the right-hand side queries for Boolean literals.</legend>
+	<default><value>0</value></default>
+	<options><value>Positive</value><value>Negative</value></options>
+      </parameter>
+      <parameter>
+	<name>neg_query_s1_2</name>
+	<label>RHS Literals Cat</label>
+	<parameter_type>multiple_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Types of literals allowed in the right-hand side queries for categorical literals.</legend>
+	<default><value>0</value></default>
+	<options><value>Positive</value><value>Negative</value></options>
+      </parameter>
+      <parameter>
+	<name>neg_query_s1_3</name>
+	<label>RHS Literals Num</label>
+	<parameter_type>multiple_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Types of literals allowed in the right-hand side queries for numerical literals.</legend>
+	<default><value>0</value></default>
+	<options><value>Positive</value><value>Negative</value></options>
+      </parameter>
+      <parameter>
+	<name>ops_query_s1</name>
+	<label>RHS Operators</label>
+	<parameter_type>multiple_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Type of operators allowed in the right-hand side queries.</legend>
+	<default><value>0</value><value>1</value></default>
+	<options><value>Conjunction</value><value>Disjunction</value></options>
+      </parameter>
+	<parameter>
+	<name>single_side_or</name>
+	<label>Single side OR</label>
+	<parameter_type>single_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Restrict use of disjunction to only one side.</legend>
+	<default><value>1</value></default>
+	<options><value>no</value><value>yes</value></options>
+      </parameter>
+    </section>
+</section>
+<section>
+    <name>Scoring</name>
+    <section>
+      <name>Extension candidates</name>
+      <parameter>
+	<name>score.impacc</name>
+	<label>Accuracy improvement coefficient</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Coefficient of the accuracy improvement for scoring extension candidates.</legend>
+	<length>4</length>
+	<default><value>1</value></default>
+      </parameter>
+      <parameter>
+	<name>score.rel_impacc</name>
+	<label>Relative Accurracy improvement coefficient</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Coefficient of the relative accuracy improvement for scoring extension candidates.</legend>
+	<length>4</length>
+	<default><value>0</value></default>
+      </parameter>
+      <parameter>
+	<name>score.pval_red</name>
+	<label>Redescription p-value coefficient</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Coefficient of the redescription p-value for scoring extension candidates. Negative values are interpreted as a threshold weighted by p-value factor.</legend>
+	<length>4</length>
+	<default><value>0.01</value></default>
+      </parameter>
+      <parameter>
+	<name>score.pval_query</name>
+	<label>Query p-value coefficient</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Coefficient of the query p-value for scoring extension candidates. Negative values are interpreted as a threshold weighted by p-value factor.</legend>
+	<length>4</length>
+	<default><value>0.01</value></default>
+      </parameter>
+      <parameter>
+	<name>score.pval_fact</name>
+	<label>p-value factor</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Weight for p-value in case of using thresholds for scoring extension candidates.</legend>
+	<length>4</length>
+	<default><value>1</value></default>
+      </parameter>
+      <parameter>
+	<name>min_impr</name>
+	<label>Min improvement</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Minimum improvement score for an acceptable extension.</legend>
+	<length>4</length>
+	<default><value>0</value></default>
+      </parameter>
+	<parameter>
+	<name>in_weight</name>
+	<label>Weight Inside</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Weight for entities inside selected area (only when such an area is specified).</legend>
+	<default><value>10</value></default>
+      </parameter>
+	<parameter>
+	<name>out_weight</name>
+	<label>Weight Outside</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Weight for entities outside selected area (only when such an area is specified).</legend>
+	<default><value>1</value></default>
+      </parameter>
+      <parameter>
+	<name>method_pval</name>
+	<label>p-value formula</label>
+	<parameter_type>single_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Formula used for computing the p-value</legend>
+	<default><value>0</value></default>
+	<options><value>marg</value><value>supp</value><value>over</value></options>
+      </parameter>
+      <parameter>
+	<name>parts_type</name>
+	<label>Missing values belief</label>
+	<parameter_type>single_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>What to expect from missing values</legend>
+	<default><value>0</value></default>
+	<options><value>grounded</value><value>optimistic</value><value>pessimistic</value></options>
+      </parameter>
+    </section>
+  </section>
+  <section>
+    <name>Search</name>
+    <section>
+      <name>Beam search</name>
+      <parameter>
+	<name>max_red</name>
+	<label>Max number of pairs</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Maximum number of initial pairs extended, -1 leads to expand all.</legend>
+	<length>4</length>
+	<default><value>100</value></default>
+      </parameter>
+      <parameter>
+	<name>batch_out</name>
+	<label>Batch output</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Maximum number of redescriptions returned after an expansion.</legend>
+	<length>1</length>
+	<default><value>1</value></default>
+      </parameter>
+      <parameter>
+	<name>batch_cap</name>
+	<label>Batch capacity</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Maximum number of candidates expanded at each step of the search.</legend>
+	<length>1</length>
+	<default><value>4</value></default>
+      </parameter>
+      <parameter>
+	<name>amnesic</name>
+	<label>Amnesic</label>
+	<parameter_type>single_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Not amnesic means the algorithm remembers previously generated redescriptions and avoid generating them again.</legend>
+	<default><value>0</value></default>
+	<options><value>no</value><value>yes</value></options>
+      </parameter>
+    </section>
+    <section>
+      <name>Initial pairs</name>
+      <parameter>
+	<name>min_pairscore</name>
+	<label>Min score</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Minimum score for an initial pair to be considered.</legend>
+	<length>3</length>
+	<default><value>0.01</value></default>
+      </parameter>
+      <parameter>
+	<name>pair_sel</name>
+	<label>Expansion order</label>
+	<parameter_type>single_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Order in which the initial pairs are processed, either overall next best accuracy or alternating between side considering next best variables in turn.</legend>
+	<default><value>1</value></default>
+	<options><value>overall</value><value>alternate</value></options>
+      </parameter>
+    </section>
+    <section>
+      <name>Real valued mining</name>
+      <parameter>
+	<name>max_seg</name>
+	<label>Max number segments</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Maximum number of segments.</legend>
+	<length>3</length>
+	<default><value>20</value></default>
+      </parameter>
+      <parameter>
+	<name>max_agg</name>
+	<label>Max aggregation</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Maximum number of buckets aggregated together.</legend>
+	<length>3</length>
+	<default><value>15</value></default>
+      </parameter>
+      <parameter>
+	<name>max_sidebuckets</name>
+	<label>Max number buckets per side</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Maximum number of buckets on one side.</legend>
+	<length>4</length>
+	<default><value>20</value></default>
+      </parameter>
+      <parameter>
+	<name>max_prodbuckets</name>
+	<label>Max product buckets</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Maximum product of the number of buckets on either side.</legend>
+	<length>4</length>
+	<default><value>5000</value></default>
+      </parameter>
+    </section>
+    <section>
+      <name>Splits</name>
+      <parameter>
+	<name>splits_nb</name>
+	<label>Number of splits</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Number of splits in which to partition the data.</legend>
+	<length>2</length>
+	<default><value>10</value></default>
+      </parameter>
+      <parameter>
+	<name>splits_dim</name>
+	<label>Splitting dimension</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Coordinates dimension used to split the data, if -1 or not a coordinate dimension splitting is done randomly.</legend>
+	<length>1</length>
+	<default><value>0</value></default>
+      </parameter>
+      <parameter>
+	<name>splits_grain</name>
+	<label>Granularity of split</label>
+	<parameter_type>open</parameter_type>
+	<value_type>float</value_type>
+	<legend>Granularity of split when using coordinate, greater granularity, results in larger bands.</legend>
+	<length>3</length>
+	<default><value>10</value></default>
+      </parameter>
+      <parameter>
+	<name>splits_runs</name>
+	<label>Number of runs with splits</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Number of runs with splits.</legend>
+	<length>3</length>
+	<default><value>1</value></default>
+      </parameter>
+    </section>
+  </section>
+<section>
+    <name>Trees</name>
+   <section>
+      <name>Mining with trees</name>
+      <parameter>
+	<name>tree_mine_algo</name>
+	<label>Tree Growing Variant</label>
+	<parameter_type>single_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Method for growing the redescriptions based on classification trees CART (restrictions apply)</legend>
+	<default><value>0</value></default>
+	<options><value>splittrees</value><value>cartwheel</value><value>sprit</value><value>layeredtrees</value></options>
+      </parameter>
+      <parameter>
+	<name>min_node_size</name>
+	<label>Min node size</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Minimum number of entities in a leaf node.</legend>
+	<length>4</length>
+	<default><value>1</value></default>
+      </parameter>
+      <parameter>
+	<name>max_rounds</name>
+	<label>Max rounds</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Maximum number of alternation in CartWheels.</legend>
+	<length>3</length>
+	<default><value>10</value></default>
+      </parameter>
+    <parameter>
+	<name>max_depth</name>
+	<label>Max tree depth</label>
+	<parameter_type>open</parameter_type>
+	<value_type>integer</value_type>
+	<legend>Maximum depth of the classification tree.</legend>
+	<length>2</length>
+	<default><value>2</value></default>
+      </parameter>   
+    <parameter>
+	<name>split_criterion</name>
+	<label>Split criterion</label>
+	<parameter_type>single_options</parameter_type>
+	<value_type>text</value_type>
+	<legend>Score to use to split during the decision tree induction.</legend>
+	<default><value>0</value></default>
+	<options><value>gini</value><value>entropy</value></options>
+      </parameter>   
+    </section>
+  </section>
+</root>

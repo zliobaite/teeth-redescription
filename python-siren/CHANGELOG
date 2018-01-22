@@ -1,0 +1,98 @@
+CHANGELOG for Siren
+===================
+v4.0.0
+------
+* Support for the selection and manipulation of multiple redescriptions
+* Support for multiple lists of results
+* Showing the contribution of the literals in parallel coordinates plots
+* List views (preliminary version)
+* Filtering on support distribution over folds
+
+v3.1.1
+------
+* Projection of numerical variables with heatmap and histogram
+* Various minor fixes
+* Adding small features (caching projections, printing out support, drawing E00 on maps, etc.) 
+* Changed hosting
+
+v3.1.0
+------
+* Visualization tab and splitted frame
+* Learn/Test splits, interface and integration to vizualizations
+* Initial target vectors for trees based on categorical and sparse numerical variables. List sorting and cut-off.
+* More efficient filtering of results on return of a result, comparing only what as changed.
+* Fixed various bugs (naming of tree algorithms, saving data to package)
+
+v3.0.1
+------
+* Fixed various bugs (server info on failure, DW unchange on saving package)
+* Added main entry-point for server
+
+v3.0.0
+------
+* Integrated more tree-based mining methods
+* Visualization for trees
+* Distributed computation
+* Modified visualization layout
+* Fixed the previous tree-based methods
+* Fixed a bug in loading data
+
+v2.2.0
+------
+* Integrated tree-based (CART) mining methods from T.Zinchenko MSc Thesis
+
+v2.1.1
+------
+* freeze_support for multiprocessing in windows
+* Bug fix with log outputs and multiprocessing
+* Enable negations by variable types
+* Flip negation of Boolean variables in the Parallel Coordinates View
+* Updated help files
+
+v2.1.0
+------
+* Modified input/output
+* New parsing for the queries based on GRAKO generated parser
+* Removed Custom and XML data formats, everything to CSV
+
+v2.0.3
+------
+* Bug fix for class variables in threading
+
+v2.0.2
+------
+* Various bug fixes
+
+v2.0.1
+------
+* Dialog for setting up (possibly remote) workers
+
+v2.0.0
+------
+* Added parallel coordinates visualization
+* Added various projections visualization (scikit)
+* Entity selection by picking dot or drawing polygon
+* Disabling entities to recompute support on restricted area
+* Side selective automatic expansion
+* Automatic expansion with subset of entities emphasized
+* Interactive modification of literals'bounds in para.co. view
+
+v1.1.0
+------
+* Added option to change colours in plots
+* Changed the icon for Siren data files (OS X bundle only)
+* Updated GEOS to 3.3.6 (OS X bundle only)
+* Updated Python to 2.7.3 (OS X bundle only)
+* Updated wxPython to 2.9.4.0 (OS X bundle only)
+* Updated Basemap to 1.0.5 (OS X bundle only)
+* Various bug fixes
+
+v1.0.1
+------
+* Added support for importing CSV files
+* Various bug fixes
+
+v1.0.0
+------
+* The initial Siren release
+

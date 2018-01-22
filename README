@@ -1,0 +1,104 @@
+This archive contains the data, code and standalone map figures related to the publication "Computational biomes: the ecometrics of large mammal teeth", Esther Galbrun, Hui Tang, Mikael Fortelius and Indrė Žliobaitė. 2018. Palaeontologica Electronica https://doi.org/10.26879/786
+
+A preprint version of the article is available in the root folder.
+Standalone pdfs of the maps displayed in the paper can be found in the "maps" folder.
+
+DATA
+====================
+
+
+Raw data
+-------------------
+
+The "raw_data" folder contains the raw data files:
+
+- bio_legend.txt				Climate variable names
+- data_dental_master.csv			Taxa x Traits (as well as more variables: order, family, diet, etc.)
+- data_sites_IUCN_narrowA.csv			Sites × Climate
+- occurence_IUCN_AF.csv				Sites × Taxa for the African continent
+- occurence_IUCN_EU.csv				Sites × Taxa for the Eurasian continent
+- occurence_IUCN_NA.csv				Sites × Taxa for the North American continent
+- occurence_IUCN_SA.csv				Sites × Taxa for the South American continent
+
+Species occurrence data come from the list of International Union for Conservation of Nature (https://www.iucn.org/).
+Climate variables come from the WorldClim dataset (http://www.worldclim.org/).
+Species occurrence data and climate variables (Sites × Taxa and Sites × Climate, respectively) have been compiled by M. Lawing and colleagues, resampled using equidistant point grids, communicated by J.Eronen. 
+These datasets have been published in (Lawing et al., 2016).
+
+The dental trait dataset has been compiled by the authors, except for the trait data from Africa, which comes
+from (Žliobaitė et al., 2016). Most hypsodonty scores come from (Liu et al., 2012).
+
+
+Prepared data
+-------------------
+
+The "prepared_data" folder contains the prepared data files, ready to be fed to the redescription mining algorithm:
+
+- IUCN_all_nbspc3+_bio.csv			Sites x Climate
+- IUCN_all-splits_nbspc3+_agg_rounded3.csv	Sites x Traits
+
+
+Results 
+-------------------
+
+The "xps" folder contains results files:
+
+- biotraits_IUCN_all_nbspc3+_i.01o.6_org_rounded3_selected.siren	Siren file containing the redescriptions presented in the study
+- biotraits_IUCN_all_nbspc3+_i.01o.6_rounded3.queries			Complete set of raw results, the entire list of redescriptions mined from the data
+- queries_suppids.txt							Redescriptions presented in the study, each one accompanied with the ids of the site in its support
+
+
+Koeppen resources
+-------------------
+
+The "koeppen" folder contains Koeppen-Geiger climate classification data from http://koeppen-geiger.vu-wien.ac.at/present.htm and the tikz source code for drawing the histograms
+
+- Koeppen-Geiger-ASCII.txt			Geo coordinates to KG classes (http://koeppen-geiger.vu-wien.ac.at/data/Koeppen-Geiger-ASCII.zip)
+- Map_KG-Global.zip				R script and data files for plotting the KG classes on a map (shttp://koeppen-geiger.vu-wien.ac.at/Rcode/Map_KG-Global.zip)
+- Koeppen_hists_tikz.tex				Tikz source code for drawing the histograms of the distributions of Koeppen climate classes for each redescription
+
+
+
+CODE
+====================
+
+
+Utilitary scripts
+-------------------
+
+The "scripts" folder contains some utilitary python scripts for data preparation and results postprocessing:
+
+- prepare_data_traits.py			This script prepares the datasets from the raw data files (running this script will overwrite the files in the "prepared_data" folder). This script also tallies the number of sites containing each order/family
+- match_koppen.py				This script assigns a climate class to each site in the dataset. It takes as input the Sites x Climate prepared dataset as well as the koeppen/Koeppen-Geiger-ASCII.txt file (see "Koeppen resources" above).
+- stats_koppen.py				This script generates the histograms of the distributions of Koeppen climate classes for each redescription as well as compute the entropy ratio to evaluate the quality of the match. It takes as input the file xps/queries_suppids.txt (see "Results" above) as well as the Sites x Climate file including the Koeppen classes, as produce by the previous script.  
+
+
+Siren/ReReMi
+-------------------
+
+The "python-siren" folder contains the code for the Siren interface and the ReReMi redescription mining algorithm, implemented in python.
+
+Siren/ReReMi can be run with python 2.7. ReRemi depends on a few python packages including numpy, scipy, and sklearn.
+Additionaly, Siren requires wxgtk3.0, matplotlib and mpltoolkits.basemap.
+
+The version of the Siren/ReReMi used in this study corresponds to commit 24c1b96 of the code on the git repository https://gforge.inria.fr/scm/?group_id=8278.
+The code can be obtained directly by running the following commands:
+>> git clone https://scm.gforge.inria.fr/anonscm/git/siren/siren.git
+>> cd siren
+>> git checkout 24c1b96
+
+To mine redescriptions in command line, simply run
+>> python siren/reremi/mainReReMi.py ../preferences.xml
+
+File xps/biotraits_IUCN_all_nbspc3+_i.01o.6_org_rounded3_selected.siren contains the premined results together with the data files and parameters.
+To open it in Siren, first launch the interface by running
+>> python exec_siren.py
+Then select "File" > "Open" in the menu, then navigate to and select the xps/biotraits_IUCN_all_nbspc3+_i.01o.6_org_rounded3_selected.siren file. 
+
+Note that a couple of minor edits have been made to the code:
+- to file siren/reremi/mainReReMi.py, in order to allow filenames relative to the configuration file/ package location
+- to file siren/views/classTDView.py, a few added lines marked with "KOEPPEN MAP" allow to plot the map of climate classes using the colors from the R script in Map_KG-Global.zip. This code is commented out by default.
+
+For more informations about Siren/ReReMi, latest version of the code, user guide, references, etc. the webpage of the tool is available at http://siren.gforge.inria.fr/main/
+
+version 1.0 ---- 22 Jan. 2018 ---- esther.galbrun@aalto.fi
